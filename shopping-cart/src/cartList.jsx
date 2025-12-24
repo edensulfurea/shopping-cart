@@ -1,12 +1,16 @@
-export default function CartList({products}){
-    return(
-        <ul>
-         {products.map(product=>(
-            <li key={product.id}>
-               {product.name} — €{product.price} (qty: {product.quantity})
-            </li>
-         ))}
-        </ul>
-    )
+import CartItem from './cartItem';
 
+export default function CartList({ products, onIncrease, onDecrease }) {
+  return (
+    <ul>
+      {products.map(product => (
+        <CartItem
+          key={product.id}
+          product={product}
+          onIncrease={onIncrease}
+          onDecrease={onDecrease}
+        />
+      ))}
+    </ul>
+  );
 }
