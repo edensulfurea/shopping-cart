@@ -10,8 +10,13 @@ const initialProducts = [
 
 export default function App() {
   const [products, setProducts] = useState(initialProducts);
+  const total = products.reduce(
+  (sum, product) => sum + product.quantity * product.price,
+  0
+);
 
-  // 🔼 AUMENTA QUANTITÀ
+
+  //  AUMENTA QUANTITÀ
   function handleIncrease(id) {
     setProducts(products =>
       products.map(product =>
@@ -22,7 +27,7 @@ export default function App() {
     );
   }
 
-  // 🔽 DIMINUISCE QUANTITÀ
+  // DIMINUISCE QUANTITÀ
   function handleDecrease(id) {
     setProducts(products =>
       products.map(product =>
@@ -42,6 +47,8 @@ export default function App() {
         onIncrease={handleIncrease}
         onDecrease={handleDecrease}
       />
+      <p><strong>Total:</strong> €{total}</p>
+
     </div>
   );
 }
